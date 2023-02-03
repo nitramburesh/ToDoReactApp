@@ -3,7 +3,7 @@ import ToDoPage from "./ToDoPage.jsx";
 import { useState } from "react";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="App">

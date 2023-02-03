@@ -1,9 +1,7 @@
-import './App.css'
+import "./App.css";
 
 const Loading = () => {
-  return ( 
-    <span className='loader'></span>
-   );
-}
- 
+  return <span className="loader"></span>;
+};
+
 export default Loading;

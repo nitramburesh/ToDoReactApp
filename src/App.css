@@ -46,6 +46,8 @@
   border-right: 5px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  align-self: center;
+  justify-self: center;
 }
 
 @keyframes rotation {
@@ -58,8 +60,68 @@
   }
 }
 
-.todoitem{
+.todoitem {
   display: flex;
   cursor: pointer;
   gap: 10px;
+  margin-left: 2rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  width: 85%;
+  text-align: left;
+}
+.wrap-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.wrap-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  background-color: #c0c0c0;
+  box-shadow: 0.5rem 0.8rem 05rem #c0c0c0;
+  width: 60%;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+.button {
+  border-style: none;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.selected-tab {
+  border-style: none;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+.unselected-tab {
+  background-color: #282c34;
+  color: white;
+  border-style: none;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+
+  cursor: pointer;
+}
+.unselected-tab:hover {
+  background-color: #000;
 }
