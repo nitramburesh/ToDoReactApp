@@ -62,7 +62,6 @@
 
 .todoitem {
   display: flex;
-  cursor: pointer;
   gap: 10px;
   margin-left: 2rem;
   font-family: "Courier New", Courier, monospace;
@@ -124,4 +123,13 @@
 }
 .unselected-tab:hover {
   background-color: #000;
+}
+.delete-button {
+  padding: 5px 10px;
+  cursor: pointer;
+
+  align-self: center;
+  border-style: none;
+  background-color: #000;
+  color: white;
 }

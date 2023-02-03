@@ -1,10 +1,18 @@
 import "./App.css";
-import { useState } from "react";
-const ToDoItem = ({ completed, title, id, onChange }) => {
+import Button from "./Atom.jsx/Button";
+const ToDoItem = ({ completed, title, id, clickedTodo, clickedDeleteTodo }) => {
   return (
-    <span className="todoitem" onClick={onChange}>
-      <input type="checkbox" checked={completed} onChange={onChange} key={id} />
+    <span className="todoitem">
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={clickedTodo}
+        key={id}
+      />
       <p> {title}</p>
+      <Button className="delete-button" onClick={clickedDeleteTodo}>
+        delete
+      </Button>
     </span>
   );
 };

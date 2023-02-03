@@ -11,7 +11,7 @@ const ToDoPage = ({ loading, setLoading }) => {
   const loadItemsFromStorage = () => {
     return JSON.parse(localStorage.getItem("TODOS"));
   };
-  const saveToStorage = () => {
+  const saveToStorage = (todos) => {
     return localStorage.setItem("TODOS", JSON.stringify(todos));
   };
   const deleteAllItems = () => {
@@ -37,19 +37,24 @@ const ToDoPage = ({ loading, setLoading }) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
-          console.log(todo);
           return { ...todo, completed: !completed };
         }
         return todo;
       })
     );
   };
+  const handleDeleteTodo = ({ id }) => {
+    const filteredList = todos.filter((todo) => todo.id !== id);
+    saveToStorage(filteredList);
+    setTodos(filteredList);
+  };
   const ToDos = () => {
     const showSelectedTab = () => {
       const viewTodo = (todo) => (
         <ToDoItem
           title={todo.todo}
-          onChange={() => handleClickedTodo(todo)}
+          clickedTodo={() => handleClickedTodo(todo)}
+          clickedDeleteTodo={() => handleDeleteTodo(todo)}
           completed={todo.completed}
           id={todo.id}
           key={todo.id}
@@ -102,7 +107,7 @@ const ToDoPage = ({ loading, setLoading }) => {
           <Button className="button" onClick={sendRequest}>
             Fetch todos
           </Button>
-          <Button className="button" onClick={saveToStorage}>
+          <Button className="button" onClick={() => saveToStorage(todos)}>
             Save
           </Button>
           <Button className="button" onClick={deleteAllItems}>
