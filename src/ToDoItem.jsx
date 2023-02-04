@@ -1,5 +1,5 @@
 import "./App.css";
-import Button from "./Atom.jsx/Button";
+import Button from "./Atom/Button";
 const ToDoItem = ({ completed, title, id, clickedTodo, clickedDeleteTodo }) => {
   return (
     <span className="todoitem">
@@ -10,7 +10,7 @@ const ToDoItem = ({ completed, title, id, clickedTodo, clickedDeleteTodo }) => {
         key={id}
       />
       <p> {title}</p>
-      <Button className="delete-button" onClick={clickedDeleteTodo}>
+      <Button className="small-button" onClick={clickedDeleteTodo}>
         delete
       </Button>
     </span>
