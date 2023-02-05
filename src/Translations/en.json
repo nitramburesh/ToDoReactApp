@@ -1,0 +1,30 @@
+{
+  "buttons": {
+    "dashboard": "dashboard",
+    "home": "home",
+    "google": "google",
+    "showList": "show list",
+    "hideList": "Hide List",
+    "loadItems": "load items",
+    "english": "english",
+    "russian": "russian",
+    "language": "language",
+    "deleteAllItems": "delete all items",
+    "deleteItem": "delete",
+    "save": "save"
+  },
+  "text": {
+    "welcomeHeading": "WELCOME TO: TO DO APP 3000!",
+    "showListMessage": "CLICK BUTTON TO SHOW THE LIST",
+    "loading": "loading items...",
+    "loadingFailed": "loading items failed",
+    "thisIsNextPage": "this is next page",
+    "currentTime": "current time :",
+    "currentAppWidth": "current app width :"
+  },
+  "placeholders": {
+    "searchItems": "search items...",
+    "insertToken": "insert your token...",
+    "addItem": "add item..."
+  }
+}
