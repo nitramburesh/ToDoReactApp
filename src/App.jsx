@@ -7,18 +7,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Molecule/Header";
 function App() {
   const [loading, setLoading] = useState(false);
+  const [language, setLanguage] = useState("english");
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header language={language} setLanguage={setLanguage} />
       <Routes>
         <Route
           path=""
-          element={<ToDoPage loading={loading} setLoading={setLoading} />}
+          element={
+            <ToDoPage
+              loading={loading}
+              setLoading={setLoading}
+              language={language}
+            />
+          }
         />
         <Route
           path="/dashboard"
-          element={<Dashboard loading={loading} setLoading={setLoading} />}
+          element={
+            <Dashboard
+              loading={loading}
+              setLoading={setLoading}
+              language={language}
+            />
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

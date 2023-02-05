@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Wrapper from "../Atom/Wrapper";
+import en from "./../Translations/en.json";
+import ru from "./../Translations/ru.json";
 
-const Dashboard = () => {
+const Dashboard = ({ language }) => {
   const [time, setTime] = useState();
   const [appWidth, setAppWidth] = useState(window.innerWidth);
-
+  const translations = language === "english" ? en : ru;
   useEffect(() => {
     const handleResize = () => {
       setAppWidth(window.innerWidth);
@@ -34,7 +36,7 @@ const Dashboard = () => {
     if (time) {
       return (
         <Wrapper className="row">
-          <h1 className="dashboard-item">current time:</h1>
+          <h1 className="dashboard-item">{translations.text.currentTime}</h1>
           <h1 className="dashboard-item">{hours + ":" + minutes}</h1>
         </Wrapper>
       );
@@ -43,7 +45,7 @@ const Dashboard = () => {
   const AppWidth = () => {
     return (
       <Wrapper className="row">
-        <h1 className="dashboard-item">current app width:</h1>
+        <h1 className="dashboard-item">{translations.text.currentAppWidth}</h1>
         <h1 className="dashboard-item">{`${appWidth}px`}</h1>
       </Wrapper>
     );

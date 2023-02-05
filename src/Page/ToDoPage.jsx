@@ -5,13 +5,17 @@ import ToDoItem from "../ToDoItem";
 import Wrapper from "../Atom/Wrapper";
 import Button from "../Atom/Button";
 import { v1 as generateId } from "uuid";
+import en from "./../Translations/en.json";
+import ru from "./../Translations/ru.json";
 
-const ToDoPage = ({ loading, setLoading }) => {
+const ToDoPage = ({ loading, setLoading, language }) => {
   const [error, setError] = useState({ message: "", isError: false });
   const [todos, setTodos] = useState([]);
   const [selectedTab, setSelectedTab] = useState("all");
   const [searchText, setSearchText] = useState("");
   const [addTodo, setAddTodo] = useState("");
+
+  const translations = language === "english" ? en : ru;
 
   const loadItemsFromStorage = () => {
     return JSON.parse(localStorage.getItem("TODOS"));
@@ -30,12 +34,17 @@ const ToDoPage = ({ loading, setLoading }) => {
 
   const sendRequest = async () => {
     setLoading(true);
-    await fetch("https://dummyjson.com/todos")
-      .then((response) => response.json())
-      .then(({ todos }) => {
-        setTodos(todos);
-        setLoading(false);
-      });
+    try {
+      await fetch("https://dummyjson.com/todos")
+        .then((response) => response.json())
+        .then(({ todos }) => {
+          setTodos(todos);
+          setLoading(false);
+        });
+    } catch (error) {
+      handleError("Error loading source...");
+      setLoading(false);
+    }
   };
   const handleError = (message) => {
     setError({ isError: true, message: message });
@@ -58,9 +67,9 @@ const ToDoPage = ({ loading, setLoading }) => {
   };
   const handleAddTodo = () => {
     if (addTodo.length > 0) {
-      todos.unshift({ id: generateId(), todo: addTodo, completed: false });
+      todos?.unshift({ id: generateId(), todo: addTodo, completed: false });
     } else {
-      handleError("too short...");
+      handleError("TODO is too short...");
     }
     saveToStorage(todos);
     setAddTodo("");
@@ -122,17 +131,19 @@ const ToDoPage = ({ loading, setLoading }) => {
   };
   return (
     <div>
-      <h1 className="heading">Welcome to: TO DO APP 3000!</h1>
+      <h1 className={error.isError ? "error-heading" : "heading"}>
+        {error.isError ? error.message : translations.text.welcomeHeading}
+      </h1>
       <Wrapper className="wrap-center">
         <Wrapper className="row">
           <Button className="button" onClick={sendRequest}>
-            Fetch todos
+            {translations.buttons.loadItems}
           </Button>
           <Button className="button" onClick={() => saveToStorage(todos)}>
-            Save
+            {translations.buttons.save}
           </Button>
           <Button className="button" onClick={deleteAllItems}>
-            Delete all
+            {translations.buttons.deleteAllItems}
           </Button>
         </Wrapper>
         <Wrapper className="wrap-left">
@@ -142,7 +153,7 @@ const ToDoPage = ({ loading, setLoading }) => {
           <input
             className="input"
             type="text"
-            placeholder="search todos..."
+            placeholder={translations.placeholders.searchItems}
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -150,9 +161,9 @@ const ToDoPage = ({ loading, setLoading }) => {
           />
           <Wrapper className="row">
             <input
-              className={error.isError ? "error-input" : "input"}
+              className={"input"}
               type="text"
-              placeholder={error.isError ? error.message : "add todos..."}
+              placeholder={translations.placeholders.addItem}
               value={addTodo}
               onChange={(e) => {
                 setAddTodo(e.target.value);

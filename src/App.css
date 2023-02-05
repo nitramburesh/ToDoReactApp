@@ -3,6 +3,12 @@
   font-family: "Courier New", Courier, monospace;
   font-size: 2.5rem;
 }
+.error-heading {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.5rem;
+  color: red;
+}
 .loader {
   margin-top: 100px;
   width: 100px;
@@ -108,20 +114,6 @@
   font-size: 1rem;
   font-family: "Courier New", Courier, monospace;
   margin: 10px 0px;
-}
-.error-input {
-  border-color: red;
-  width: 30rem;
-  height: 2rem;
-  align-self: center;
-  border-radius: 2rem;
-  text-align: center;
-  font-size: 1rem;
-  font-family: "Courier New", Courier, monospace;
-  margin: 10px 0px;
-}
-.error-input::placeholder {
-  color: red;
 }
 
 .header {
